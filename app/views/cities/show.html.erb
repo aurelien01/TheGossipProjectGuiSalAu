@@ -2,18 +2,9 @@
 
 Ville :<%= @current_city.name%>
 <br>
-
-<div class="card-deck">
-  <% Gossip.all.each_with_index do |potin, index|%>
-  <div class="col-3">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h3 class="card-title">Potin n° <%= potin.id %> de <%= link_to "#{potin.user.first_name}", user_path(potin.user.id) %></h3>
-        <h6 class="card-subtitle mb-2 text-muted"><%= potin.title %></h6>
-        <p class="card-text"><%= potin.content[0..50] %>...</p>
-        <%=  link_to "Voir plus", gossip_path(potin.id), :class => "card-link" %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
+Potins :<% @current_city.users.each do |u| %>
+          <% u.gossips.each do |c| %>
+          <p><%= c.title%></p>
+          <p><%= c.content%></p>
+          <% end %>
+          <% end %>
