@@ -6,6 +6,9 @@
       <p class="card-text"><%= @current_gossip.content %></p>
       <p class="card-text"><em>Date de création : <%= @current_gossip.created_at.asctime %></em></p>
       <p class="card-text"><%= link_to "Ville", city_path(@current_gossip.user.city.id) %></p>
+      <p class="card-text"><%= link_to "Édit", edit_gossip_path %></p>
+      <p class="card-text"><%= link_to "Supprimer", gossip_path(@current_gossip), data: { confirm: 'tu es sur?' }, method: :delete %></p>
+
     </div>
   </div>
 </div>

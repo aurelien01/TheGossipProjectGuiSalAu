@@ -8,11 +8,9 @@ class User < ApplicationRecord
   has_many :comments
 
   validates :last_name,
-   presence: true,
-   uniqueness: true
+   presence: true
   validates :first_name,
-   presence: true,
-   uniqueness: true
+   presence: true
   validates :description,
    presence: true,
    length: { minimum: 20 }
