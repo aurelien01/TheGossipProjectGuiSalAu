@@ -1,8 +1,13 @@
+<div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Bienvenue sur The Gossip Project</h1>
+          <p>Élu meilleur site de potins sur la communauté THP, prends du bon temps entre deux programmes a lire les dernière news de ta formation préféré, ou tu peux aussi mettre les pépites sur ton groupe. </p>
+          <p><a class="btn btn-primary btn-lg" href="/gossips/new" role="button">Potins »</a></p>
+        </div>
+      </div>
 <div class="container">
-<h1>Bienvenue sur notre site The Gossip Project !</h1>
-<br><br><br>
-<h4><%= link_to "Potin tout neuf ? ", new_gossip_path %></h4><br><br>
-<p>Les potins les plus récents :</p>
+<h2>Les potins les plus récents : </h2>
+<br><br>
   <div class="card-deck">
     <% Gossip.all.each_with_index do |potin, index|%>
     <div class="col-3">

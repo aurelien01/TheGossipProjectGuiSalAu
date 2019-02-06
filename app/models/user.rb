@@ -14,8 +14,8 @@ class User < ApplicationRecord
    presence: true,
    uniqueness: true
   validates :description,
-   presence: true
-   #length: { minimum: 140 }
+   presence: true,
+   length: { minimum: 20 }
   validates :email,
    presence: true,
    uniqueness: true,
