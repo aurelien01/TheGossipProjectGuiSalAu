@@ -4,6 +4,7 @@ class GossipsController < ApplicationController
 
   def show
     @current_gossip = Gossip.find(params[:id])
+    @current_comment = @current_gossip.comments.new
   end
 
   def new
@@ -18,8 +19,10 @@ class GossipsController < ApplicationController
   def create
     @gossip = Gossip.create(title: params[:title], content: params[:content], user_id: User.all.sample.id)
       if @gossip.save
+        flash[:success] = "Ton potin as été créer"
         redirect_to "/gossips"
       else
+        flash[:danger] = "Erreur, titre et/ou contenu manquant(s)"
         redirect_to "/gossips/new"
       end
   end
@@ -27,8 +30,10 @@ class GossipsController < ApplicationController
   def update
     @gossip = Gossip.find(params[:id])
       if @gossip.update(title: params[:title], content: params[:content])
+        flash[:success] = "Ton potin as été modifier"
         redirect_to "/gossips"
       else
+        flash[:danger] = "Tu n'as rien modifier"
         redirect_to "/gossips/:id/edit"
       end
 
@@ -37,8 +42,10 @@ class GossipsController < ApplicationController
   def destroy
     @gossip = Gossip.find(params[:id])
       if @gossip.destroy
+        flash[:success] = "Ton potin as été supprimer"
         redirect_to "/gossips"
       else
+        flash[:danger] = "Ton potin n'as pas été supprimer"
         redirect_to "/gossips/:id/edit"
       end
     end

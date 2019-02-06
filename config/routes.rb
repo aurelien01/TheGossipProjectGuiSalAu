@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-  get 'comments/new'
-  get 'comments/show'
-  get 'comments/edit'
-  resources :gossips
+  resources :gossips do
+    resources :comments
+  end
   resources :users
   resources :cities
   get '/team', to: 'static_pages#team'
