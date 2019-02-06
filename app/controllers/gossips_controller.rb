@@ -15,10 +15,12 @@ class GossipsController < ApplicationController
 
   def create
     @gossip = Gossip.create(title: params[:title], content: params[:content], user_id: User.last.id)
-    @gossip.save
       if @gossip.save
+        flash[:success] = "Woohoo!"
+
         redirect_to "/gossips"
       else
+        flash[:alert] = "Alerting you to the monkey on your car!"
         redirect_to "/gossips/new"
       end
   end

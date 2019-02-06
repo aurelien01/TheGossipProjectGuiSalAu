@@ -5,6 +5,7 @@
       <h6 class="card-subtitle mb-2 text-muted"><%= @current_gossip.title %></h6>
       <p class="card-text"><%= @current_gossip.content %></p>
       <p class="card-text"><em>Date de création : <%= @current_gossip.created_at.asctime %></em></p>
+      <p class="card-text"><%= link_to "Ville", city_path(@current_gossip.user.city.id) %></p>
     </div>
   </div>
 </div>

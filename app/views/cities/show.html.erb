@@ -1,10 +1,15 @@
-<h1>Potins classée par villes </h1>
 
-Ville :<%= @current_city.name%>
-<br>
-Potins :<% @current_city.users.each do |u| %>
-          <% u.gossips.each do |c| %>
-          <p><%= c.title%></p>
-          <p><%= c.content%></p>
-          <% end %>
-          <% end %>
+<div class="container">
+  <div class="card">
+    <h1>Potins classée par villes </h1>
+    <% @current_city.users.each do |user| %>
+    <% user.gossips.each do |gossip| %>
+    <div class="card-body">
+      <h3 class="card-title">Potin de <%= user.first_name %> <%= user.last_name %></h3><br>
+      <h6 class="card-subtitle mb-2 text-muted"><%= gossip.title %></h6><br>
+      <h6 class="card-subtitle mb-2 text-muted"><%= gossip.content %></h6>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
