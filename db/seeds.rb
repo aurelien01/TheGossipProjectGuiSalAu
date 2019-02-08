@@ -22,7 +22,7 @@ City.destroy_all
 end
 
 10.times do
-  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.paragraph(15), email: Faker::Internet.email, age: rand(15..80), city_id: City.all.sample.id)
+  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.paragraph(15), email: Faker::Internet.email, age: rand(15..80), city_id: City.all.sample.id, password: "oggy")
 end
 
 20.times do
@@ -46,7 +46,7 @@ end
 end
 
 20.times do
-  Like.create!(user_id: User.all.sample.id, gossip_id: Gossip.all.sample.id, comment_id: Comment.all.sample.id)
+  Like.create!(user_id: User.all.sample.id, gossip_id: Gossip.all.sample.id)
 end
 
 20.times do

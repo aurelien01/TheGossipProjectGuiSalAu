@@ -1,8 +1,17 @@
 <h1></h1>
 <div class="card text-center">
-  <div class="card-header">
+  <div class="card-body">
+    <h4 class="card-title">Potin n° <%= @current_gossip.id %> de <%= link_to "#{@current_gossip.user.first_name}", user_path(@current_gossip.user.id) %></h4>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @current_gossip.title %></h6>
+    <p class="card-text"><%= @current_gossip.content %></p>
+    <p class="card-text"><em>Date de création : <%= @current_gossip.created_at.asctime %></em></p>
+    <p class="btn btn-outline-danger"><%= link_to "Éditer", edit_gossip_path %></p>
+  </div>
+  <div class="card-header ">
+
+
     <ul class="nav nav-nav card-header-pills">
-      <li class="nav-item">
+      <li class="nav-item offset-10">
         <p class="nav-link active"><%= link_to "#{@current_gossip.user.city.name}", city_path(@current_gossip.user.city.id) %></p>
       </li>
       <li class="nav-item">
@@ -10,22 +19,27 @@
       </li>
     </ul>
   </div>
-  <div class="card-body">
-    <h4 class="card-title">Potin n° <%= @current_gossip.id %> de <%= link_to "#{@current_gossip.user.first_name}", user_path(@current_gossip.user.id) %></h4>
-    <h6 class="card-subtitle mb-2 text-muted"><%= @current_gossip.title %></h6>
-    <p class="card-text"><%= @current_gossip.content %></p>
-    <p class="card-text"><em>Date de création : <%= @current_gossip.created_at.asctime %></em></p>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <p class="btn btn-outline-danger"><%= link_to "Éditer", edit_gossip_path %></p>
-  </div>
 </div>
 
+<div class="container col-md-8 order-md-1">
+     <%= form_tag gossip_comments_path(@current_gossip.id), action: 'create', methode: 'post' do %>
 
-<div class="container">
+     <div class="form">
+           <%= label_tag 'Commentaire :' %>
+           <%= text_area_tag 'content', @current_comment, placeholder: 'Ton commentaire', class: "form-control", row: "3"%>
+     </div>
 
-  <% form_for [@current_gossip, @current_comment] do |f| %>
-  <%= f.label :content %><br>
-  <%= f.text_area :content %>
-  <%= f.submit "Post Comment" %>
-  <% end %>
-</div>
+     <div class="form-group">
+           <%= submit_tag "Soumettre", class: "btn btn-lg btn-block btn-primary mt-3" %>
+     </div>
+
+     <% end %>
+
+    <section class="section comment">
+        <h4 class="subtitle is-5"><strong><%= @current_gossip.comments.count %></strong> Commentaire<%="s" if @current_gossip.comments.count > 1 %></h4>
+          <% @current_gossip.comments.each do |c|%>
+          <h6><%= c.user.first_name %></h6>
+          <p><%= c.content %></p>
+          <p><%= c.created_at.asctime %></p>
+          <% end %>
+    </section>

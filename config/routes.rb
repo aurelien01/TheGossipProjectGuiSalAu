@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :gossips do
     resources :comments
   end
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :cities
   get '/team', to: 'static_pages#team'
